@@ -32,3 +32,59 @@ func TestMedian(t *testing.T) {
 		t.Log("Success 4")
 	}
 }
+
+func TestBinarySearch(t *testing.T) {
+	var arr []int
+	var got int
+	var expect int
+	var testNo int = 1
+
+	arr = []int{0, 1, 2, 3, 4, 5}
+	got = BinarySearch(arr, 3, 0)
+	expect = 3
+	if got != expect {
+		t.Errorf("TEST %d ERROR got: %d, expected: %d ", testNo, got, expect)
+	}
+	testNo++
+
+	arr = []int{0, 1, 2, 4, 5}
+	got = BinarySearch(arr, 3, 0)
+	expect = -1
+	if got != expect {
+		t.Errorf("TEST %d ERROR got: %d, expected: %d ", testNo, got, expect)
+	}
+	testNo++
+
+	arr = []int{0, 1, 2, 4, 5}
+	got = BinarySearch(arr, 3, -1)
+	expect = 2
+	if got != expect {
+		t.Errorf("TEST %d ERROR got: %d, expected: %d ", testNo, got, expect)
+	}
+	testNo++
+
+	arr = []int{0, 1, 2, 4, 5}
+	got = BinarySearch(arr, 3, 1)
+	expect = 3
+	if got != expect {
+		t.Errorf("TEST %d ERROR got: %d, expected: %d ", testNo, got, expect)
+	}
+	testNo++
+
+	arr = []int{1, 0, 1, 1, 0, 3, 1, 4, 1, 3, 2, 4, 0, 0, 5, 3, 1, 1, 1, 4, 2, 1, 0, 0, 1, 2, 5, 2, 6, 3, 6, 2, 4,
+		1, 2, 1, 1, 1, 3, 2, 2, 0, 0, 0, 3, 3, 7, 1, 2, 1}
+	Sort(arr)
+	got = BinarySearch(arr, 1.72, 1)
+	expect = 25
+	if got != expect {
+		t.Errorf("TEST %d ERROR got: %d, expected: %d ", testNo, got, expect)
+	}
+	testNo++
+
+	got = BinarySearch(arr, 2.28, -1)
+	expect = 33
+	if got != expect {
+		t.Errorf("TEST %d ERROR got: %d, expected: %d ", testNo, got, expect)
+	}
+	testNo++
+}

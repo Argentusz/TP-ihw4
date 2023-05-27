@@ -33,7 +33,8 @@ func DistributionFunc[T Number](arr []T) map[T]float64 {
 }
 
 func Probability[T Number](arr []T, a, b float64) float64 {
-	return float64(CountIf(arr, func(x T) bool { return float64(x) >= a && float64(x) <= b })) / float64(len(arr))
+	f := DistributionFunc(arr)
+	return f[arr[BinarySearch(arr, b, 1)]] - f[arr[BinarySearch(arr, a, -1)]]
 }
 
 func Excess[T Number](arr []T) float64 {

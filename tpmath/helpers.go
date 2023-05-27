@@ -1,6 +1,8 @@
 package tpmath
 
-import "sort"
+import (
+	"sort"
+)
 
 func Sum[T Number](arr []T) T {
 	var res T
@@ -58,4 +60,27 @@ func Sorted[T Number](arr []T) []T {
 	copy(res, arr)
 	sort.Slice(res, func(i, j int) bool { return res[i] < res[j] })
 	return res
+}
+
+func BinarySearch[T Number](arr []T, val float64, mode int) int {
+	i, j := 0, len(arr)
+	for i < j {
+		h := int(uint(i+j) >> 1)
+		if float64(arr[h]) < val {
+			i = h + 1
+		} else {
+			j = h
+		}
+	}
+	if float64(arr[i])-val != 0 {
+		if float64(arr[i]) < val && mode == 1 {
+			return i + 1
+		} else if float64(arr[i]) > val && mode == -1 {
+			return i - 1
+		}
+		if mode == 0 {
+			return -1
+		}
+	}
+	return i
 }
